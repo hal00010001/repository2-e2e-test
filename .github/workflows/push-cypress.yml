@@ -1,0 +1,24 @@
+name: Cypress test while push
+
+on: 
+
+    pull_request:        
+        branches:
+            - stage       
+
+jobs:
+    trigger:
+        runs-on: ubuntu-latest
+
+        steps:
+
+            - name: Invoke workflow in another repo with inputs
+              uses: aurelien-baudet/workflow-dispatch@v2
+              with:
+                workflow: develop.yml
+                repo: hal00010001/testes-e2e-cypress
+                ref: refs/heads/main
+                token: ${{ secrets.SECRETPAT }}
+                
+
+    
